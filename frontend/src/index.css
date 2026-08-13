@@ -475,9 +475,10 @@ section {
   
   /* Adjust SVG illustration sizes */
   .hero-illustration .tactical-card {
-    max-width: 100% !important;
+    max-width: 240px !important;
     aspect-ratio: 1/1 !important;
     height: auto !important;
+    margin: 0 auto !important;
   }
   
   .section-title {
