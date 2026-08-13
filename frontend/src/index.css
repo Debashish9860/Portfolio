@@ -285,7 +285,8 @@ h1, h2, h3, h4 {
 }
 
 .glitch-hover.in-view {
-  animation: glitch-periodic 6s infinite;
+  animation: glitch-anim 0.25s infinite;
+  text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan);
 }
 
 .glitch-hover:hover {
