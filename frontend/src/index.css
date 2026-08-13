@@ -433,7 +433,11 @@ section {
 /* Comprehensive Responsive HUD Mobile Overrides */
 @media (max-width: 900px) {
   section {
-    padding: 60px 0 !important; /* Reduced from 80px */
+    padding: 36px 0 !important; /* Compressed section paddings on mobile */
+  }
+  
+  .section-header {
+    margin-bottom: 32px !important; /* Compressed gap below heading on mobile */
   }
   
   .container {
