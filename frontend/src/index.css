@@ -433,7 +433,7 @@ section {
 /* Comprehensive Responsive HUD Mobile Overrides */
 @media (max-width: 900px) {
   section {
-    padding: 80px 0;
+    padding: 60px 0 !important; /* Reduced from 80px */
   }
   
   .container {
@@ -473,12 +473,22 @@ section {
     gap: 16px !important;
   }
   
-  /* Adjust SVG illustration sizes */
+  /* Adjust SVG illustration size and collapse empty dark borders */
   .hero-illustration .tactical-card {
-    max-width: 240px !important;
+    max-width: 320px !important; /* Restored size for font legibility */
     aspect-ratio: 1/1 !important;
     height: auto !important;
+    padding: 12px !important; /* Collapsed inner dark border from 30px to 12px */
     margin: 0 auto !important;
+  }
+  
+  .hero-grid {
+    gap: 16px !important; /* Collapsed gap between illustration and text */
+  }
+  
+  #home {
+    padding-top: 70px !important; /* Collapsed excess padding at page start */
+    padding-bottom: 20px !important;
   }
   
   .section-title {
