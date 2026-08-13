@@ -487,8 +487,8 @@ section {
   }
   
   #home {
-    padding-top: 70px !important; /* Collapsed excess padding at page start */
-    padding-bottom: 20px !important;
+    padding-top: 24px !important; /* Collapsed excess padding at page start */
+    padding-bottom: 10px !important;
   }
   
   .section-title {
