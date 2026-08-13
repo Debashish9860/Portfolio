@@ -11,21 +11,21 @@ const AdminDashboard = () => {
     const fetchAdminData = async () => {
       try {
         // Fetch Contact Messages from Express API
-        const msgRes = await fetch('http://localhost:5000/api/messages');
+        const msgRes = await fetch(`http://${window.location.hostname}:5000/api/messages`);
         if (msgRes.ok) {
           const msgData = await msgRes.json();
           setMessages(msgData.data || []);
         }
 
         // Fetch Telemetry Visit stats from Express API
-        const visitRes = await fetch('http://localhost:5000/api/analytics/visit');
+        const visitRes = await fetch(`http://${window.location.hostname}:5000/api/analytics/visit`);
         if (visitRes.ok) {
           const visitData = await visitRes.json();
           setVisitLogs(visitData.data || []);
         }
 
         // Check health
-        const healthRes = await fetch('http://localhost:5000/api/health');
+        const healthRes = await fetch(`http://${window.location.hostname}:5000/api/health`);
         if (healthRes.ok) {
           const healthData = await healthRes.json();
           setDbStatus(healthData.dbState || 'connected');

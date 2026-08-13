@@ -68,7 +68,7 @@ const ContactForm = ({ addLog }) => {
     logEvent('Uploading message packet to /api/messages...');
 
     try {
-      const response = await fetch('http://localhost:5000/api/messages', {
+      const response = await fetch(`http://${window.location.hostname}:5000/api/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -32,7 +32,7 @@ const Home = () => {
   // Telemetry page view logging
   useEffect(() => {
     try {
-      fetch('http://localhost:5000/api/analytics/visit', {
+      fetch(`http://${window.location.hostname}:5000/api/analytics/visit`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ path: '/' })
@@ -86,7 +86,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/projects');
+        const response = await fetch(`http://${window.location.hostname}:5000/api/projects`);
         const resData = await response.json();
         if (resData.success) {
           setProjects(resData.data);
