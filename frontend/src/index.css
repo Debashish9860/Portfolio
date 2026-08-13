@@ -491,8 +491,10 @@ section {
   }
   
   #home {
-    padding-top: 24px !important; /* Collapsed excess padding at page start */
-    padding-bottom: 10px !important;
+    min-height: auto !important; /* Remove 100vh viewport stretch on mobile */
+    padding-top: 80px !important; /* Safe clearance for fixed top navbar */
+    padding-bottom: 20px !important;
+    align-items: flex-start !important; /* Disable flex vertical centering */
   }
   
   .section-title {
