@@ -23,7 +23,7 @@ export const sendEmail = async (options) => {
     },
     body: JSON.stringify({
       from: 'Portfolio Contact <onboarding@resend.dev>', // Resend sandbox domain sender
-      to: 'debashishrout9860@gmail.com', // Your target verified email
+      to: process.env.EMAIL_TO || 'debashishrout9860@gmail.com', // Dynamic target email, defaults to primary
       reply_to: options.email, // Visitor's email so you can click reply directly
       subject: `[Portfolio Contact] ${options.subject}`,
       text: `You have received a new contact message from your portfolio website.
