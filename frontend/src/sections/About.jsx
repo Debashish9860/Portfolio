@@ -1,5 +1,6 @@
 import React from 'react';
 import { Briefcase, Award } from 'lucide-react';
+import profileImg from '../assets/debashish.jpg';
 
 const About = ({ addLog }) => {
   const logEvent = (text) => {
@@ -24,6 +25,71 @@ const About = ({ addLog }) => {
           {/* Bio summary */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <h3 className="mono" style={{ fontSize: '1.1rem', color: '#ffffff', letterSpacing: '0.05em' }}>[01_PROFILE_BRIEFING]</h3>
+            
+            {/* Stylized Profile Picture */}
+            <div className="tactical-card" style={{
+              width: '100%',
+              maxWidth: '240px',
+              position: 'relative',
+              borderRadius: '2px',
+              border: '1px solid rgba(102, 252, 241, 0.2)',
+              background: 'rgba(6, 9, 14, 0.6)',
+              overflow: 'hidden',
+              padding: '10px',
+              alignSelf: 'flex-start',
+              boxShadow: '0 0 15px rgba(102, 252, 241, 0.05)'
+            }}
+            onMouseEnter={() => logEvent('Biometric facial scan: INITIALIZED')}
+            >
+              <div className="card-scanner" style={{ animationDuration: '4s' }}></div>
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                aspectRatio: '3/4',
+                overflow: 'hidden',
+                borderRadius: '1px',
+                border: '1px solid rgba(255, 255, 255, 0.05)'
+              }}>
+                {/* Cyberpunk grid overlay on top of photo */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06))',
+                  backgroundSize: '100% 4px, 6px 100%',
+                  zIndex: 2,
+                  pointerEvents: 'none'
+                }}></div>
+                <img 
+                  src={profileImg} 
+                  alt="Debashish Raut" 
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    filter: 'grayscale(15%) contrast(110%) brightness(95%) sepia(5%) hue-rotate(145deg)', // Cyberpunk HUD blue-cyan tint
+                    transition: 'all 0.5s ease'
+                  }}
+                  className="profile-photo-glitch"
+                />
+                {/* Corner reticle decorations */}
+                <div style={{ position: 'absolute', top: '5px', left: '5px', width: '8px', height: '8px', borderTop: '2px solid var(--cyan)', borderLeft: '2px solid var(--cyan)', zIndex: 3 }} />
+                <div style={{ position: 'absolute', top: '5px', right: '5px', width: '8px', height: '8px', borderTop: '2px solid var(--cyan)', borderRight: '2px solid var(--cyan)', zIndex: 3 }} />
+                <div style={{ position: 'absolute', bottom: '5px', left: '5px', width: '8px', height: '8px', borderBottom: '2px solid var(--cyan)', borderLeft: '2px solid var(--cyan)', zIndex: 3 }} />
+                <div style={{ position: 'absolute', bottom: '5px', right: '5px', width: '8px', height: '8px', borderBottom: '2px solid var(--cyan)', borderRight: '2px solid var(--cyan)', zIndex: 3 }} />
+              </div>
+              <div style={{
+                marginTop: '10px',
+                textAlign: 'center',
+                fontSize: '0.65rem',
+                fontFamily: 'var(--font-mono)',
+                color: 'var(--cyan)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em'
+              }}>
+                Dossier Subject: DEBASHISH_RAUT
+              </div>
+            </div>
+
             <p>
               I am a Pune-based developer with hands-on expertise building enterprise-grade applications.
               With a strong base in both web and desktop architectures, I enjoy resolving complex computation, layout calculation, and ticketing issues.

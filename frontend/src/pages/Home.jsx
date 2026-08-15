@@ -102,21 +102,6 @@ const Home = () => {
         // Seed static fallback list
         const staticProjects = [
           {
-            title: 'LED Estimator',
-            description: 'A native CAD processing and calculation suite. Built for industrial signage planning, it parses vector graphics to lay out LED modules automatically.',
-            category: 'Desktop App',
-            techStack: ['C#', '.NET Framework', 'Node.js', 'CodeIgniter 4'],
-            githubLink: 'https://github.com/Debashish9860',
-            liveLink: '',
-            features: [
-              'Desktop CAD Tool: Parses EPS/PDF vector files to automatically position LED modules.',
-              'BOM Generator: Calculates precise power supply capacities and creates detailed Bill of Materials.',
-              'Web Panel: Node.js/CI4 portal handling 5 languages (EN, FR, ES, PT, DE).'
-            ],
-            stats: { 'CAD Format': 'EPS, PDF', 'i18n': '5 Languages', 'Engine': '.NET Parser' },
-            featured: true
-          },
-          {
             title: 'Muktai Kitchen',
             description: 'A highly optimized Hotel Counter Management System engineered in a rapid 2-sprint execution cycle. Automates front-of-house ticketing and back-of-house cost analysis.',
             category: 'Web App',
@@ -132,21 +117,6 @@ const Home = () => {
             featured: true
           },
           {
-            title: 'Sai Controls CRM & PPC Suite',
-            description: 'An enterprise Customer Relationship Management (CRM) and Production Planning & Control (PPC) manufacturing suite. Seamlessly connects inventory with assembly progress.',
-            category: 'Web App',
-            techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
-            githubLink: 'https://github.com/Debashish9860',
-            liveLink: '',
-            features: [
-              'CRM System: Tracks customer orders, client specifications, and sales pipeline.',
-              'PPC Workflows: Automates assembly floor progressions, tracking raw parts and assembly steps.',
-              'Allocation Engines: Intelligent materials allocation to reduce dead stock.'
-            ],
-            stats: { 'Workflow': 'Shop Floor', 'Savings': 'Intelligent Parts Allocation', 'Interface': 'Interactive Gantt' },
-            featured: true
-          },
-          {
             title: 'Abstract Management System',
             description: 'Academic seminar registration and abstract submission platform developed for Abhinav Pharmacy College, Narhe, Pune.',
             category: 'Web App',
@@ -159,7 +129,7 @@ const Home = () => {
               'Review Dashboard: Admin backend for reviewing and grading submitted scientific abstracts.'
             ],
             stats: { 'Client': 'Pharmacy College', 'Gateway': 'Razorpay Checkout', 'Database': 'PostgreSQL' },
-            featured: false
+            featured: true
           },
           {
             title: 'Eurobond R&D Vision Tool',
@@ -174,7 +144,7 @@ const Home = () => {
               'BOM Estimator: Details panel shapes, dimensions, and scrap ratios.'
             ],
             stats: { 'Core Engine': 'OpenCV Vision', 'Output': 'ACP Layout Mockups', 'Savings': 'Reduced Manual Surveys' },
-            featured: false
+            featured: true
           }
         ];
         setProjects(staticProjects);
