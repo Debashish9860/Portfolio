@@ -13,6 +13,8 @@ const ContactForm = ({ addLog }) => {
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
   const [toast, setToast] = useState(null); // { type: 'success'|'error', text: '' }
+  const [attachment, setAttachment] = useState(null); // { filename: '', content: 'base64...' }
+  const [fileInputKey, setFileInputKey] = useState(Date.now()); // Used to reset file input field
 
   const validate = () => {
     const tempErrors = {};
@@ -55,6 +57,31 @@ const ContactForm = ({ addLog }) => {
     }
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Check size (5MB limit)
+    if (file.size > 5 * 1024 * 1024) {
+      showToast('error', 'File size exceeds 5MB limit.');
+      logEvent('Attachment warning: Selected file is too large (> 5MB).');
+      e.target.value = ''; // clear input
+      return;
+    }
+
+    logEvent(`Processing attachment packet: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setAttachment({
+        filename: file.name,
+        content: reader.result // This is the base64 data URL
+      });
+      logEvent('Attachment encoding: COMPLETE.');
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     logEvent('Attempting contact form transmission protocol...');
@@ -74,7 +101,10 @@ const ContactForm = ({ addLog }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          attachment
+        }),
       });
 
       const data = await response.json();
@@ -82,6 +112,8 @@ const ContactForm = ({ addLog }) => {
       if (response.ok && data.success) {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setAttachment(null);
+        setFileInputKey(Date.now());
         
         if (data.status === 'offline_logged') {
           showToast('success', 'Message simulated! (Backend connected, MongoDB logged to terminal console)');
@@ -107,6 +139,8 @@ const ContactForm = ({ addLog }) => {
         
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
+        setAttachment(null);
+        setFileInputKey(Date.now());
         showToast('success', 'Form saved locally in Offline Mode! (Server could not be reached directly)');
         logEvent('Server offline: Redirecting packet to browser localStorage.');
       } catch (lsErr) {
@@ -255,6 +289,70 @@ const ContactForm = ({ addLog }) => {
             onBlurCapture={(e) => { if (!errors.message) e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)'; }}
           />
           {errors.message && <span style={{ color: 'var(--pink)', fontSize: '0.75rem', fontFamily: 'var(--font-mono)' }}>[!] {errors.message}</span>}
+        </div>
+
+        {/* File Attachment Input */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <label className="mono" style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>// ATTACH_DOSSIER_FILE (OPTIONAL, MAX 5MB)</label>
+          <div style={{
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            background: 'rgba(255, 255, 255, 0.01)',
+            border: '1px dashed rgba(255, 255, 255, 0.08)',
+            padding: '12px 16px',
+            borderRadius: '2px',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(102, 252, 241, 0.3)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)'; }}
+          >
+            <input
+              key={fileInputKey}
+              type="file"
+              onChange={handleFileChange}
+              onFocus={() => logEvent('Accessing file input gateway')}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: 0,
+                cursor: 'pointer',
+                width: '100%',
+                height: '100%',
+                zIndex: 2
+              }}
+            />
+            <span className="mono" style={{ fontSize: '0.85rem', color: attachment ? 'var(--cyan)' : 'var(--text-secondary)' }}>
+              {attachment ? `📎 ${attachment.filename}` : 'Select file (PDF, PNG, JPG, DOCX...)'}
+            </span>
+            {attachment && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setAttachment(null);
+                  setFileInputKey(Date.now());
+                  logEvent('Attachment packet: PURGED.');
+                }}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--pink)',
+                  fontSize: '0.75rem',
+                  fontFamily: 'var(--font-mono)',
+                  cursor: 'pointer',
+                  zIndex: 3,
+                  marginLeft: 'auto',
+                  textTransform: 'uppercase'
+                }}
+              >
+                [Purge File]
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Submit button */}

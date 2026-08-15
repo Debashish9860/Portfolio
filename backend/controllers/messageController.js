@@ -1,10 +1,11 @@
 import Message from '../models/Message.js';
+import { sendEmail } from '../utils/sendEmail.js';
 
 // @desc    Submit a contact form message
 // @route   POST /api/messages
 // @access  Public
 export const submitMessage = async (req, res) => {
-  const { name, email, subject, message } = req.body;
+  const { name, email, subject, message, attachment } = req.body;
 
   if (!name || !email || !subject || !message) {
     return res.status(400).json({ success: false, error: 'Please provide all required fields (name, email, subject, message)' });
@@ -19,6 +20,16 @@ export const submitMessage = async (req, res) => {
       console.log(`Message: ${message}`);
       console.log('------------------------------------------------\n');
       
+      // Dispatch email notification even if DB is offline
+      if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+        try {
+          await sendEmail({ name, email, subject, message, attachment });
+          console.log('[API] Email notification sent successfully (DB offline mode).');
+        } catch (emailError) {
+          console.error(`[API] Email dispatch in offline DB mode failed: ${emailError.message}`);
+        }
+      }
+      
       return res.status(200).json({ 
         success: true, 
         status: 'offline_logged', 
@@ -29,6 +40,18 @@ export const submitMessage = async (req, res) => {
     const newMessage = await Message.create({ name, email, subject, message });
     
     console.log(`[API] Message saved to database: ${newMessage._id}`);
+    
+    // Dispatch email notification
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      try {
+        await sendEmail({ name, email, subject, message, attachment });
+        console.log('[API] Email notification sent successfully.');
+      } catch (emailError) {
+        console.error(`[API] Email dispatch failed: ${emailError.message}`);
+      }
+    } else {
+      console.log('[API] Email credentials not configured. Skipping email notification.');
+    }
     
     res.status(201).json({ 
       success: true, 
