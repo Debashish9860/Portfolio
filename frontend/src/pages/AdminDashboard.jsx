@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Mail, ShieldAlert, Users, Database, Terminal, ChevronLeft } from 'lucide-react';
 
 const AdminDashboard = () => {
+  const API_BASE = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:5000`;
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dbStatus, setDbStatus] = useState('Checking...');
@@ -11,21 +12,21 @@ const AdminDashboard = () => {
     const fetchAdminData = async () => {
       try {
         // Fetch Contact Messages from Express API
-        const msgRes = await fetch(`http://${window.location.hostname}:5000/api/messages`);
+        const msgRes = await fetch(`${API_BASE}/api/messages`);
         if (msgRes.ok) {
           const msgData = await msgRes.json();
           setMessages(msgData.data || []);
         }
 
         // Fetch Telemetry Visit stats from Express API
-        const visitRes = await fetch(`http://${window.location.hostname}:5000/api/analytics/visit`);
+        const visitRes = await fetch(`${API_BASE}/api/analytics/visit`);
         if (visitRes.ok) {
           const visitData = await visitRes.json();
           setVisitLogs(visitData.data || []);
         }
 
         // Check health
-        const healthRes = await fetch(`http://${window.location.hostname}:5000/api/health`);
+        const healthRes = await fetch(`${API_BASE}/api/health`);
         if (healthRes.ok) {
           const healthData = await healthRes.json();
           setDbStatus(healthData.dbState || 'connected');

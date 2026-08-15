@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 
 const ContactForm = ({ addLog }) => {
+  const API_BASE = import.meta.env.VITE_API_URL || `http://${window.location.hostname}:5000`;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -68,7 +69,7 @@ const ContactForm = ({ addLog }) => {
     logEvent('Uploading message packet to /api/messages...');
 
     try {
-      const response = await fetch(`http://${window.location.hostname}:5000/api/messages`, {
+      const response = await fetch(`${API_BASE}/api/messages`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
