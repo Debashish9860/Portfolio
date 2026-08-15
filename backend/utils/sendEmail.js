@@ -6,6 +6,7 @@ export const sendEmail = async (options) => {
     host: 'smtp.gmail.com',
     port: 587,
     secure: false, // true for port 465, false for 587
+    family: 4, // Force IPv4 to prevent ENETUNREACH errors on cloud hosts like Render
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
