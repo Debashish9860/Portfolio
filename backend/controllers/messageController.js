@@ -21,7 +21,7 @@ export const submitMessage = async (req, res) => {
       console.log('------------------------------------------------\n');
       
       // Dispatch email notification even if DB is offline
-      if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      if (process.env.RESEND_API_KEY) {
         try {
           await sendEmail({ name, email, subject, message, attachment });
           console.log('[API] Email notification sent successfully (DB offline mode).');
@@ -42,7 +42,7 @@ export const submitMessage = async (req, res) => {
     console.log(`[API] Message saved to database: ${newMessage._id}`);
     
     // Dispatch email notification
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    if (process.env.RESEND_API_KEY) {
       try {
         await sendEmail({ name, email, subject, message, attachment });
         console.log('[API] Email notification sent successfully.');
@@ -50,7 +50,7 @@ export const submitMessage = async (req, res) => {
         console.error(`[API] Email dispatch failed: ${emailError.message}`);
       }
     } else {
-      console.log('[API] Email credentials not configured. Skipping email notification.');
+      console.log('[API] RESEND_API_KEY not configured. Skipping email notification.');
     }
     
     res.status(201).json({ 
