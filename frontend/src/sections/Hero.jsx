@@ -118,15 +118,15 @@ const Hero = ({ addLog }) => {
                 {/* Customized Project Abbreviations Readout */}
                 {/* Left Column: Modules 01-03 */}
                 <text x="52" y="80" fill="var(--cyan)" fontSize="5.5" fontFamily="var(--font-mono)" opacity="0.8">// MODULES</text>
-                <text x="52" y="92" fill="var(--cyan)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">01: MKIT</text>
-                <text x="52" y="102" fill="var(--cyan)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">02: AMYS</text>
-                <text x="52" y="112" fill="var(--cyan)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">03: ERND</text>
+                <text x="52" y="92" fill="var(--cyan)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">01: VCAD</text>
+                <text x="52" y="102" fill="var(--cyan)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">02: KPOS</text>
+                <text x="52" y="112" fill="var(--cyan)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">03: MCRM</text>
 
                 {/* Right Column: Modules 04-05 + Status */}
                 <text x="114" y="80" fill="var(--purple)" fontSize="5.5" fontFamily="var(--font-mono)" opacity="0.8">// DB_LOGS</text>
-                <text x="114" y="92" fill="var(--purple)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">04: BIOM</text>
-                <text x="114" y="102" fill="var(--purple)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">05: SYNC</text>
-                <text x="114" y="112" fill="var(--purple)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">SYS: OK</text>
+                <text x="114" y="92" fill="var(--purple)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">04: ASAP</text>
+                <text x="114" y="102" fill="var(--purple)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">05: CVFA</text>
+                <text x="114" y="112" fill="var(--purple)" fontSize="5" fontFamily="var(--font-mono)" opacity="0.6">SYS: ONLINE</text>
               </g>
 
               <defs>

@@ -120,17 +120,7 @@ const Projects = ({ projects, loading, addLog }) => {
                     </div>
                   )}
 
-                  <div style={{ display: 'flex', gap: '14px' }}>
-                    <a 
-                      href={proj.githubLink || 'https://github.com/Debashish9860'} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="btn-tactical btn-tactical-purple" 
-                      style={{ padding: '8px 16px', fontSize: '0.75rem', flexGrow: 1, justifyContent: 'center' }}
-                    >
-                      Repository_Log
-                    </a>
-                  </div>
+
                 </div>
               </div>
             ))}

@@ -3,11 +3,29 @@ import Project from '../models/Project.js';
 // Pre-seeded projects data from Debashish's Resume
 const fallbackProjects = [
   {
-    title: 'Muktai Kitchen',
-    description: 'A highly optimized Hotel Counter Management System engineered in a rapid 2-sprint execution cycle. Automates front-of-house ticketing and back-of-house cost analysis.',
+    title: 'Vector CAD & LED Estimator',
+    description: 'A native CAD processing and calculation suite. Built for industrial signage planning, it parses vector graphics to lay out LED modules automatically.',
+    category: 'Desktop App',
+    techStack: ['C#', '.NET Framework', 'Node.js', 'CodeIgniter 4'],
+    liveLink: '',
+    features: [
+      'Desktop CAD Tool: Parses EPS/PDF vector files to automatically position LED modules.',
+      'BOM Generator: Calculates precise power supply capacities and creates detailed Bill of Materials.',
+      'Web Panel: Node.js/CI4 portal handling 5 languages (EN, FR, ES, PT, DE).'
+    ],
+    stats: {
+      'CAD Format Support': 'EPS, PDF',
+      'i18n Translation': '5 Languages',
+      'Processing Engine': '.NET Vector Parser'
+    },
+    featured: true,
+    order: 1
+  },
+  {
+    title: 'Smart Kitchen & POS System',
+    description: 'A highly optimized Restaurant Counter Management System engineered in a rapid 2-sprint execution cycle. Automates front-of-house ticketing and back-of-house cost analysis.',
     category: 'Web App',
     techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
-    githubLink: 'https://github.com/Debashish9860',
     liveLink: '',
     features: [
       'Real-time Ticketing: Generates instantaneous service tokens for kitchen monitors.',
@@ -20,14 +38,32 @@ const fallbackProjects = [
       'Finance Reporting': 'Automated EOD Summary'
     },
     featured: true,
-    order: 1
+    order: 2
   },
   {
-    title: 'Abstract Management System',
-    description: 'Academic seminar registration and abstract submission platform developed for Abhinav Pharmacy College, Narhe, Pune.',
+    title: 'Manufacturing CRM & PPC Suite',
+    description: 'An enterprise Customer Relationship Management (CRM) and Production Planning & Control (PPC) manufacturing suite. Seamlessly connects inventory with assembly progress.',
+    category: 'Web App',
+    techStack: ['React.js', 'Node.js', 'Express.js', 'MongoDB'],
+    liveLink: '',
+    features: [
+      'CRM System: Tracks customer orders, client specifications, and sales pipeline.',
+      'PPC Workflows: Automates assembly floor progressions, tracking raw parts and assembly steps.',
+      'Allocation Engines: Intelligent materials allocation to reduce dead stock.'
+    ],
+    stats: {
+      'Workflow Automation': 'Shop Floor Operations',
+      'Inventory Savings': 'Intelligent Part Allocation',
+      'Interface': 'Interactive Gantt/Timeline'
+    },
+    featured: true,
+    order: 3
+  },
+  {
+    title: 'Academic Seminar & Abstract Portal',
+    description: 'Academic seminar registration and abstract submission platform developed for a leading educational institution.',
     category: 'Web App',
     techStack: ['Node.js', 'Express.js', 'PostgreSQL', 'EJS', 'Razorpay API'],
-    githubLink: 'https://github.com/Debashish9860',
     liveLink: '',
     features: [
       'Academic Registration: Handles attendee profiles, delegate designations, and poster abstract attachments.',
@@ -35,19 +71,18 @@ const fallbackProjects = [
       'Review Dashboard: Admin backend for reviewing and grading submitted scientific abstracts.'
     ],
     stats: {
-      'Client': 'Abhinav Pharmacy College',
+      'Client': 'Academic Institution',
       'Payment Provider': 'Razorpay Checkout',
       'Database Engine': 'PostgreSQL'
     },
-    featured: true,
-    order: 2
+    featured: false,
+    order: 4
   },
   {
-    title: 'Eurobond R&D Vision Tool',
-    description: 'An architectural visualization and image processing tool used to calculate aluminum panel layouts on structures under construction.',
+    title: 'Computer Vision Facade Analyzer',
+    description: 'An architectural visualization and image processing tool used to calculate building panel layouts on structures under construction.',
     category: 'Research & Development',
     techStack: ['Python', 'Image Processing', 'OpenCV', 'Estimation Algorithms'],
-    githubLink: 'https://github.com/Debashish9860',
     liveLink: '',
     features: [
       'Computer Vision Filters: Strips backgrounds, leaves, and visual noise from facade photos.',
@@ -56,11 +91,11 @@ const fallbackProjects = [
     ],
     stats: {
       'Core Engine': 'Computer Vision (OpenCV)',
-      'Output': 'ACP Layout Mockups',
-      'Efficiency Gains': 'Reduced manual facades measurement'
+      'Output': 'Facade Layout Mockups',
+      'Efficiency Gains': 'Reduced manual facade surveys'
     },
-    featured: true,
-    order: 3
+    featured: false,
+    order: 5
   }
 ];
 
