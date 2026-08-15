@@ -3,11 +3,16 @@ import nodemailer from 'nodemailer';
 export const sendEmail = async (options) => {
   // 1. Create a transporter
   const transporter = nodemailer.createTransport({
-    service: 'Gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // true for port 465, false for 587
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    connectionTimeout: 10000, // 10 seconds timeout
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
   });
 
   // 2. Setup attachment if present
