@@ -515,4 +515,17 @@ section {
   }
 }
 
+/* Profile card responsive alignment */
+.profile-card {
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .profile-card {
+    align-self: center !important;
+    margin: 0 auto 15px auto !important;
+  }
+}
+
+
 

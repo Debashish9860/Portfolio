@@ -27,7 +27,7 @@ const About = ({ addLog }) => {
             <h3 className="mono" style={{ fontSize: '1.1rem', color: '#ffffff', letterSpacing: '0.05em' }}>[01_PROFILE_BRIEFING]</h3>
             
             {/* Stylized Profile Picture */}
-            <div className="tactical-card" style={{
+            <div className="tactical-card profile-card" style={{
               width: '100%',
               maxWidth: '240px',
               position: 'relative',
@@ -36,7 +36,6 @@ const About = ({ addLog }) => {
               background: 'rgba(6, 9, 14, 0.6)',
               overflow: 'hidden',
               padding: '10px',
-              alignSelf: 'flex-start',
               boxShadow: '0 0 15px rgba(102, 252, 241, 0.05)'
             }}
             onMouseEnter={() => logEvent('Biometric facial scan: INITIALIZED')}
@@ -66,7 +65,6 @@ const About = ({ addLog }) => {
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
-                    filter: 'grayscale(15%) contrast(110%) brightness(95%) sepia(5%) hue-rotate(145deg)', // Cyberpunk HUD blue-cyan tint
                     transition: 'all 0.5s ease'
                   }}
                   className="profile-photo-glitch"
